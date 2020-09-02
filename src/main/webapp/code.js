@@ -1,11 +1,13 @@
 var num_cuenta;
 
-/*function storeNumCuenta(){
+function storeNumCuenta(){
     num_cuenta = document.getElementById("input_cuenta").value
-};*/
+};
 
 $(function(){
     $("#consultas").click(function(){
+        debugger;
+        alert("hola");
         $.ajax({
             url: "http://localhost:8080/CuarenTeam/rest/cliente/" + num_cuenta,
             method: "GET",
