@@ -10,7 +10,6 @@ utn\frd\cuarenteam\rest\services\ApplicationConfig.class
 utn\frd\cuarenteam\rest\services\BonosRest.class
 utn\frd\cuarenteam\rest\services\TransaccionesRest.class
 utn\frd\cuarenteam\sessions\ClientesFacade.class
-utn\frd\cuarenteam\servlet\LoginServlet.class
 utn\frd\cuarenteam\entity\Clientes.class
 utn\frd\cuarenteam\entity\Transacciones.class
 utn\frd\cuarenteam\entity\Usuarios.class

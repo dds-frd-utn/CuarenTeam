@@ -44,6 +44,8 @@ public class ClienteRest {
     public void edit(@PathParam("num_cuenta")long num_cuenta, Clientes cliente){
         ejbClienteFacade.edit(cliente);
     }
+    
+    
 //eliminar entidades
     @DELETE
     @Consumes({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})

@@ -8,8 +8,9 @@
     <script src="code.js"></script>
     <title>Cuarenteam</title>
 </head>
-<body style="background-color:rgb(51,51,223);">
+<body style="background-color:rgb(51,51,223);" onload="num()">
 
+    <h5 class="text-right text-white">Numero de cuenta: <span id="myText"></span></h5>
     <h1 class="text-center text-white">Banco Cuarenteam</h1>
     <h3 class="text-center text-white">Paraíso fiscal</h2>
     <div class="container ">
@@ -22,7 +23,7 @@
         <div class="container float-right col-md-3 mt-3">
             <button type="button" class="btn btn-secondary btn-lg btn-block p-4 mt-3" onclick="location.href='./consultas.html'" id="consultas">Consultas</button>
             <button type="button" class="btn btn-secondary btn-lg btn-block p-4 mt-3" onclick="location.href='./extraccion.html'">Extracción</button>
-            <button type="button" class="btn btn-secondary btn-lg btn-block p-4 mt-3" onclick="location.href='./index.html'">Salir</button>
+            <button type="button" class="btn btn-secondary btn-lg btn-block p-4 mt-3" onclick="resetNumCuenta();resetBalance();location.href='./index.html'">Salir</button>
         </div>
     </div>
 </body>

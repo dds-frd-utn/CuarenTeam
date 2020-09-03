@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="code.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="code.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <title>Consultas</title>
     
 </head>
-<body style="background-color:rgb(51,51,223);">
-	<h1 class="text-center text-white">Banco Cuarenteam</h1>
+<body style="background-color:rgb(51,51,223);" onload="num(),bal()">
+    <h5 class="text-right text-white">Numero de cuenta: <span id="myText"></span></h5>
+    <h1 class="text-center text-white">Banco Cuarenteam</h1>
     <h2 class="text-center text-white">Paraíso fiscal</h2>
+    <br>
+    <h1 class="text-center text-white">Balance: <span id="myBal"></span></h1>
     <ul></ul>
     <div class="container col-md-4 text-center">
-        <button type="submit" class="btn btn-secondary mt-4" onclick="location.href='./pantalla_principal.html'">Volver</button>
+    <button type="submit" class="btn btn-secondary mt-4" onclick="location.href='./pantalla_principal.html'">Volver</button>
     </div>
     
 </body>

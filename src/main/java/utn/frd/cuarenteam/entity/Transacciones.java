@@ -52,6 +52,10 @@ public class Transacciones implements Serializable {
     @NotNull
     @Column(name = "cuenta_destino")
     private Integer cuenta_destino;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "fecha")
+    private String fecha;
 
     public Transacciones() {
     }
@@ -60,11 +64,12 @@ public class Transacciones implements Serializable {
         this.id= id;
     }
 
-    public Transacciones(Integer id, Integer cuenta_origen, Float monto, Integer cuenta_destino) {
+    public Transacciones(Integer id, Integer cuenta_origen, Float monto, Integer cuenta_destino,String fecha) {
         this.id= id;
         this.cuenta_origen = cuenta_origen;
         this.monto = monto;
         this.cuenta_destino = cuenta_destino;
+        this.fecha = fecha;
     }
 
     public Integer getId() {
@@ -98,6 +103,13 @@ public class Transacciones implements Serializable {
     public void setCuenta_destino(Integer cuenta_destino) {
         this.cuenta_destino = cuenta_destino;
     }
+    public String getFecha() {
+        return fecha;
+    }
+    
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }    
     
         
     @Override
