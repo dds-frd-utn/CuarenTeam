@@ -4,9 +4,10 @@ function storeNumCuenta(){
     num_cuenta = document.getElementById("input_cuenta").value
 };
 
-$(function(){
+
+$( document ).ready(function() {
+    $(function(){
     $("#consultas").click(function(){
-        debugger;
         alert("hola");
         $.ajax({
             url: "http://localhost:8080/CuarenTeam/rest/cliente/" + num_cuenta,
@@ -18,8 +19,12 @@ $(function(){
         });
     });
 });
-
-
+});
+/*$(function(){
+    $("#consultas").click(function(){
+        alert("hola");
+    });
+});*/
 
 var montoDeposito;
 function storeMontoDeposito(){
