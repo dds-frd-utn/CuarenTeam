@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Usuarios.findAll", query = "SELECT u FROM Usuarios u"),
-    @NamedQuery(name = "Usuarios.findByNum_cuenta", query = "SELECT u FROM Usuarios u WHERE u.num_cuenta = :num_cuenta"),
+    @NamedQuery(name = "Usuarios.findByNumCuenta", query = "SELECT u FROM Usuarios u WHERE u.numCuenta = :numCuenta"),
     @NamedQuery(name = "Usuarios.findByUsuario", query = "SELECT u FROM Usuarios u WHERE u.usuario = :usuario"),
     @NamedQuery(name = "Usuarios.findByPassword", query = "SELECT u FROM Usuarios u WHERE u.password = :password")})
 public class Usuarios implements Serializable {
@@ -39,7 +39,7 @@ public class Usuarios implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "num_cuenta")
-    private Integer num_cuenta;
+    private Integer numCuenta;
     @Basic(optional = false)
     @NotNull
     @Size(max = 16)
@@ -55,21 +55,21 @@ public class Usuarios implements Serializable {
     }
 
     public Usuarios(Integer num_cuenta) {
-        this.num_cuenta = num_cuenta;
+        this.numCuenta = num_cuenta;
     }
 
     public Usuarios(Integer num_cuenta, String usuario, String password) {
-        this.num_cuenta = num_cuenta;
+        this.numCuenta = num_cuenta;
         this.usuario = usuario;
         this.password = password;
     }
 
-    public Integer getNum_cuenta() {
-        return num_cuenta;
+    public Integer getNumCuenta() {
+        return numCuenta;
     }
 
-    public void setNum_cuenta(Integer num_cuenta) {
-        this.num_cuenta = num_cuenta;
+    public void setNumCuenta(Integer numCuenta) {
+        this.numCuenta = numCuenta;
     }
 
     public String getUsuario() {
@@ -91,7 +91,7 @@ public class Usuarios implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (num_cuenta != null ? num_cuenta.hashCode() : 0);
+        hash += (numCuenta != null ? numCuenta.hashCode() : 0);
         return hash;
     }
 
@@ -102,7 +102,7 @@ public class Usuarios implements Serializable {
             return false;
         }
         Usuarios other = (Usuarios) object;
-        if ((this.num_cuenta == null && other.num_cuenta != null) || (this.num_cuenta != null && !this.num_cuenta.equals(other.num_cuenta))) {
+        if ((this.numCuenta == null && other.numCuenta != null) || (this.numCuenta != null && !this.numCuenta.equals(other.numCuenta))) {
             return false;
         }
         return true;
@@ -110,7 +110,7 @@ public class Usuarios implements Serializable {
 
     @Override
     public String toString() {
-        return "utn.frd.cuarenteam.entity.Usuarios[ num_cuenta=" + num_cuenta + " ]";
+        return "utn.frd.cuarenteam.entity.Usuarios[ num_cuenta=" + numCuenta + " ]";
     }
     
 }
