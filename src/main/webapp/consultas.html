@@ -9,18 +9,22 @@
     <title>Consultas</title>
     
 </head>
-<body style="background-color:rgb(51,51,223);" onload="num(),bal()">
+<body style="background-color:rgb(51,51,223);" onload="num(),bal(),hideTable()">
     <h5 class="text-right text-white">Numero de cuenta: <span id="myText"></span></h5>
     <h1 class="text-center text-white">Banco Cuarenteam</h1>
     <h2 class="text-center text-white">Paraíso fiscal</h2>
     <br>
-    <h4 class="text-left text-white">Balance: <span id="myBal"></span></h4>
+    <h4 class="text-left text-white">Balance: <span id="myBal"></span>
+        <div class="text-right">
+            <button type="submit" class="btn btn-secondary mt-4" onclick="actualizarUltimosMovimientos()">Consultar ultimos movimientos</button>
+        </div>    
+    </h4>
     <br>
-    <h4 class="text-left text-white">Ultimos 5 Movimientos</h4>
-    <br>
-    <div>
-                <table class="table table-dark">
-          <thead>
+    <div id='tabla'>
+        <h4 class="text-left text-white">Ultimos 5 Movimientos:</h4>
+        <br>
+        <table class="table table-dark">
+        <thead>
             <tr>
               <th scope="col">#</th>
               <th scope="col">Fecha</th>
@@ -31,21 +35,33 @@
           <tbody>
             <tr>
               <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
+              <td id="fec1"></td>
+              <td id="mov1"></td>
+              <td id="mon1"></td>
             </tr>
             <tr>
               <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
+              <td id="fec2"></td>
+              <td id="mov2"></td>
+              <td id="mon2"></td>
             </tr>
             <tr>
               <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
+              <td id="fec3"></td>
+              <td id="mov3"></td>
+              <td id="mon3"></td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td id="fec4"></td>
+              <td id="mov4"></td>
+              <td id="mon4"></td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td id="fec5"></td>
+              <td id="mov5"></td>
+              <td id="mon5"></td>
             </tr>
           </tbody>
         </table>

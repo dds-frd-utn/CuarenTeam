@@ -1,7 +1,9 @@
+utn\frd\cuarenteam\entity\Movimientos.class
 utn\frd\cuarenteam\sessions\TransaccionesFacade.class
 utn\frd\cuarenteam\rest\services\ClienteRest.class
 utn\frd\cuarenteam\sessions\UsuariosFacade.class
 utn\frd\cuarenteam\entity\Bonos.class
+utn\frd\cuarenteam\rest\services\MovimientosRest.class
 utn\frd\cuarenteam\JAXRSConfiguration.class
 utn\frd\cuarenteam\rest\services\UsuarioRest.class
 utn\frd\cuarenteam\sessions\AbstractFacade.class
@@ -13,4 +15,5 @@ utn\frd\cuarenteam\sessions\ClientesFacade.class
 utn\frd\cuarenteam\entity\Clientes.class
 utn\frd\cuarenteam\entity\Transacciones.class
 utn\frd\cuarenteam\entity\Usuarios.class
+utn\frd\cuarenteam\sessions\MovimientosFacade.class
 utn\frd\cuarenteam\resources\JavaEE8Resource.class

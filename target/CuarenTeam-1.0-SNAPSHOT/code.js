@@ -1,26 +1,24 @@
+/* VARIABLES */
+
 var num_cuenta;
 var monto_extraccion;
 var monto_restar;
 var numberStr;
 var number;
-
-/* DATOS CLIENTE */
-
 var datos;
 var balance = sessionStorage.getItem('balance');
 var edad = sessionStorage.getItem('edad');
 var direccion = sessionStorage.getItem('direccion');
 var nombre = sessionStorage.getItem('nombre');
 var num_cuenta = sessionStorage.getItem('cuentanum');
-
-/* DATOS 2DO CLIENTE */
-
 var datos2;
 var num_cuenta_destino;
 var balance2;
 var edad2;
 var direccion2;
 var nombre2;
+var movimientosCuenta;
+
 
 /* NUMERO DE CUENTA PARA LA SESION */
 
@@ -32,6 +30,7 @@ function resetNumCuenta(){
     sessionStorage.removeItem('cuentanum');
 }
 
+
 /* FUNCIONES PARA MOSTRAR VARIABLES EN HTML */
 
 function num() {
@@ -42,6 +41,7 @@ function bal() {
   var balance = sessionStorage.getItem('balance');
   document.getElementById("myBal").innerHTML = balance;
 }
+
 
 /* FUNCION PARA MODIFICAR EL BALANCE */
 
@@ -63,6 +63,7 @@ function modificarBalance(pnum,suma){
         }
     });
 }
+
 
 /* FUNCION PARA CONVERTIR JSONs EN STRINGS */
 
@@ -94,17 +95,18 @@ function doJsonTransf(){
     return payload;
 }
 
-function doJsonMovim(){
+function doJsonMovim(tipo,valor,cuenta){
     var payload;
-    var input_monto= document.getElementById("input_monto").value;
     payload= JSON.stringify({
-        "cuenta_destino": num_cuenta_destino,
-        "cuenta_origen": num_cuenta,
         "fecha": getFechaYHora(),
-        "monto": input_monto
+        "tipo": tipo,
+        "monto": valor,
+        "cuenta":cuenta
     });
     return payload;
 }
+
+
 /* FUNCION PARA OBTENER FECHA Y HORA EN FORMATO YYYY-MM-DD HH:MM:SS*/
 
 function normalizar(number){
@@ -127,6 +129,7 @@ function getFechaYHora(){
     var dateTime =  year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds;
     return dateTime;
 }
+
 
 /* ACTUALIZACION DE DATOS */
 
@@ -162,26 +165,24 @@ function almacenarDatosClienteDestino(){
     alert('success destino');
 };
 
+
 /* REGISTRO DE MOVIMIENTOS */
 
-function registrarMovimiento(){
+function registrarMovimiento(tipo,valor,cuenta){
     $.ajax({
-        url: "rest/movimiento",
+        url: "rest/movimientos",
         method: "POST", 
         contentType: 'application/json',
         dataType: 'json',
-        data: doJsonMovim(),        
+        data: doJsonMovim(tipo,valor,cuenta),        
         success: function(){
-        var input_monto= document.getElementById("input_monto").value;  
-        modificarBalance(num_cuenta,input_monto *= -1); 
-        modificarBalance(num_cuenta_destino,input_monto);
-        alert('transferencia completada');
-        registrarMovimiento("Transferencia",input_monto *= -1)
+            alert('movimiento registrado');
         }
     });
 }
 
-/* PANTALLA PRINCIPAL */
+
+/* PANTALLA PRINCIPAL */ /* LISTO */
 
 $(function(){
 $("#consultas,#extraccion,#transferencia,#depositar,#bonos").click(function(){  /*TODO agrupar*/
@@ -196,10 +197,11 @@ $(function(){
         var input_monto= document.getElementById("input_monto").value;  
         input_monto *= -1;
         modificarBalance(num_cuenta,input_monto);
+        registrarMovimiento("Extraccion",input_monto,num_cuenta);
     });
 });
 
-/* TRANSFERENCIAS */
+/* TRANSFERENCIAS */ /* LISTO */
 
 function displayTransferencia() {
     var input_monto= document.getElementById("input_monto").value;
@@ -219,31 +221,77 @@ function realizarTransferencia(){  /*TODO agrupar*/
         data: doJsonTransf(),        
         success: function(){
         var input_monto= document.getElementById("input_monto").value;  
-        modificarBalance(num_cuenta,input_monto *= -1); 
         modificarBalance(num_cuenta_destino,input_monto);
+        modificarBalance(num_cuenta,input_monto *= -1); 
         alert('transferencia completada');
-        registrarMovimiento("Transferencia",input_monto *= -1)
-        }
+        registrarMovimiento("Transferencia",input_monto,num_cuenta);
+        registrarMovimiento("Transferencia",input_monto *= -1,num_cuenta_destino)
+        },
     });
-}
+};
 
-/*var montoDeposito;
-function storeMontoDeposito(){
-    montoDeposito = document.getElementById("montoDeposito").value
-};*/
 
-/*$(function(){
+/* DEPOSITOS */ /* LISTO */
+
+$(function(){
     $("#depositar").click(function(){
+        var input_monto= document.getElementById("input_monto").value;  
+        modificarBalance(num_cuenta,input_monto);
+        registrarMovimiento("Deposito",input_monto,num_cuenta);
+    });
+});
+
+
+/* BONOS */
+
+/* CONSULTAS */
+
+$(function(){
+    $("#consultas").click(function(){
         $.ajax({
-            url: 'http://localhost:8080/CuarenTeam/rest/cliente/' + num_cuenta,
-            method: 'PUT',
-            dataType: 'json',
-            data: {balance:}
-            },
+            url: "rest/movimientos",
+            method: "GET", 
             success: function(data){
-                $(p).text("Despósito realizado con éxito")
+                var movimientos = data;
+                movimientosCuenta = movimientos.filter( element => element.cuenta == num_cuenta);
+                movimientosCuenta.sort(function(a, b){
+                    return b.id - a.id;
+                });
+                movimientosCuenta=JSON.stringify(movimientosCuenta);
+                alert(movimientosCuenta);
+                sessionStorage.setItem('movimientos', movimientosCuenta);
             },
         });
     });
-});*/
- 
+});
+
+function showTable(){
+    document.getElementById('tabla').style.visibility="visible";
+}
+function hideTable(){
+    document.getElementById("tabla").style.visibility="hidden";
+}   
+
+function signo(num){
+    if(Math.sign(num)>0){sig=""}else{sig="-"};
+    return sig;
+}
+function actualizarUltimosMovimientos(){
+    showTable();
+    movimientosCuenta = sessionStorage.getItem('movimientos');
+    var i;
+    movimientosCuenta= JSON.parse(movimientosCuenta);
+    for (i = 0; i < 5; i++) {
+        obj=movimientosCuenta[i];
+        var fec = (obj.fecha).toString().slice(0,19);
+        var mov = obj.tipo;
+        var mon = signo(obj.monto)+" $"+Math.abs(obj.monto).toString();
+        var sfec="fec"+(i+1).toString();
+        var smov= "mov"+(i+1).toString();
+        var smon="mon"+(i+1).toString();
+        document.getElementById(sfec).innerHTML = fec;
+        document.getElementById(smov).innerHTML = mov;
+        document.getElementById(smon).innerHTML = mon;   
+        };
+        
+};

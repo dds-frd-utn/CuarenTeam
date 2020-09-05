@@ -31,7 +31,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Movimientos.findById", query = "SELECT t FROM Movimientos t WHERE t.id= :id"),
     @NamedQuery(name = "Movimientos.findByFecha", query = "SELECT t FROM Movimientos t WHERE t.fecha = :fecha"),
     @NamedQuery(name = "Movimientos.findByTipo", query = "SELECT t FROM Movimientos t WHERE t.tipo = :tipo"),
-    @NamedQuery(name = "Movimientos.findByMonto", query = "SELECT t FROM Movimientos t WHERE t.monto = :monto")})
+    @NamedQuery(name = "Movimientos.findByMonto", query = "SELECT t FROM Movimientos t WHERE t.monto = :monto"),
+    @NamedQuery(name = "Movimientos.findByCuenta", query = "SELECT t FROM Movimientos t WHERE t.cuenta = :cuenta")})
 public class Movimientos implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,6 +45,10 @@ public class Movimientos implements Serializable {
     @NotNull
     @Column(name = "fecha")
     private String fecha;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "cuenta")
+    private String cuenta;
     @Basic(optional = false)
     @NotNull
     @Column(name = "tipo")
@@ -63,6 +68,7 @@ public class Movimientos implements Serializable {
     public Movimientos(Integer id, String fecha, String tipo, Integer monto) {
         this.id= id;
         this.fecha = fecha;
+        this.cuenta = cuenta;
         this.tipo = tipo;
         this.monto = monto;
     }
@@ -82,7 +88,13 @@ public class Movimientos implements Serializable {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
+    public String getCuenta() {
+        return cuenta;
+    }
 
+    public void setCuenta(String cuenta) {
+        this.cuenta = cuenta;
+    }
     public String getTipo() {
         return tipo;
     }
