@@ -12,11 +12,13 @@
     <h5 class="text-right text-white">Numero de cuenta: <span id="myText"></span></h5>
     <h1 class="text-center text-white mt-4">Transferencia</h1>
     <div class="container col-md-4 text-center">
-        
-        <input type="input" class="form-control mt-4" placeholder="Numero de cuenta">
-        <input type="password" class="form-control mt-4" placeholder="Monto">
-        <button type="submit" class="btn btn-secondary mt-4" >Transferir</button>
+        <input type="input" class="form-control mt-4" placeholder="Numero de cuenta" id="num_cuenta_destino">
+        <input type="input" class="form-control mt-4" placeholder="Monto" id="input_monto">
+        <p id="demo" class="text-center text-white mt-4"></p>
+        <button type="button" class="btn btn-secondary mt-4" onclick="displayTransferencia()" id="transferir">Transferir</button>
         <button type="submit" class="btn btn-secondary mt-4" onclick="location.href='./pantalla_principal.html'">Volver</button>
+        <br>
+        <span id="confirmar"></span>
     </div>
 </body>
 </html>
