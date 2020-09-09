@@ -74,10 +74,12 @@ public class Clientes implements Serializable {
         return num_cuenta;
     }
 
-    public void GetNum_cuenta(Integer num_cuenta) {
+    public void setNum_cuenta(Integer num_cuenta) {
         this.num_cuenta= num_cuenta;
     }
 
+    /* GetNum_cuenta renombrado a setNum_cuenta */
+    
     public String getNombre() {
         return nombre;
     }

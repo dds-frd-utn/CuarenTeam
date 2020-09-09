@@ -67,10 +67,12 @@ public class Bonos implements Serializable {
         return id;
     }
 
-    public void GetId(Integer id) {
+    public void setId(Integer id) { 
         this.id= id;
     }
 
+    /* GetId renombrado a setId */
+    
     public Integer getNum_cuenta() {
         return num_cuenta;
     }

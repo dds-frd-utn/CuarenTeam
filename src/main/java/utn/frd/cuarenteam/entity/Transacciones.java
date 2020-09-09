@@ -76,10 +76,12 @@ public class Transacciones implements Serializable {
         return id;
     }
 
-    public void GetId(Integer id) {
+    public void setId(Integer id) {
         this.id= id;
     }
 
+    /* GetId renombrado a setId */
+    
     public Integer getCuenta_origen() {
         return cuenta_origen;
     }

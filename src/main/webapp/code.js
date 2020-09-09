@@ -185,7 +185,7 @@ function registrarMovimiento(tipo,valor,cuenta){
 /* PANTALLA PRINCIPAL */ /* LISTO */
 
 $(function(){
-$("#consultas,#extraccion,#transferencia,#depositar,#bonos").click(function(){  /*TODO agrupar*/
+$("#consultas,#extraccion,#transferencia,#deposito,#bonos").click(function(){  /*TODO agrupar*/
             actualizarDatos(num_cuenta);
 });
 });
@@ -293,5 +293,4 @@ function actualizarUltimosMovimientos(){
         document.getElementById(smov).innerHTML = mov;
         document.getElementById(smon).innerHTML = mon;   
         };
-        
 };
